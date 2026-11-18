@@ -1,0 +1,136 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+env:
+  PUMPKIN_VERSION: "0.2.2+26.3-26.63"
+  WIT_VERSION: "0.1.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      plugin_version: ${{ steps.meta.outputs.plugin_version }}
+      pumpkin_version: ${{ steps.meta.outputs.pumpkin_version }}
+      api_version: ${{ steps.meta.outputs.api_version }}
+      wit_version: ${{ steps.meta.outputs.wit_version }}
+      asset_name: ${{ steps.meta.outputs.asset_name }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build WebAssembly component
+        run: |
+          chmod +x gradlew
+          ./gradlew cleanBuildWasm --console=plain
+
+      - name: Prepare release artifact
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          plugin_version="${GITHUB_REF_NAME#v}"
+          project_version="$(sed -n 's/^version = "\(.*\)"/\1/p' build.gradle.kts | head -n 1)"
+
+          test -n "$project_version"
+
+          if [ "$plugin_version" != "$project_version" ]; then
+            printf 'Tag version %s does not match project version %s\n' "$plugin_version" "$project_version" >&2
+            exit 1
+          fi
+
+          api_version="$(awk -F': ' '/^API version: / { print $2; exit }' target/traces/build-summary.txt)"
+          test -n "$api_version"
+
+          wasm_name="$(sed -n 's/^pumpkinWasmName=//p' gradle.properties | tail -n 1)"
+          test -n "$wasm_name"
+          test -f "target/wasm/${wasm_name}.wasm"
+
+          asset_name="tpsbar-java-${plugin_version}-pumpkin-${PUMPKIN_VERSION}-api-${api_version}-wit-${WIT_VERSION}.wasm"
+
+          mkdir -p dist
+          cp "target/wasm/${wasm_name}.wasm" "dist/${asset_name}"
+          (cd dist && sha256sum "${asset_name}" > "${asset_name}.sha256")
+
+          {
+            echo "plugin_version=${plugin_version}"
+            echo "pumpkin_version=${PUMPKIN_VERSION}"
+            echo "api_version=${api_version}"
+            echo "wit_version=${WIT_VERSION}"
+            echo "asset_name=${asset_name}"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tpsbar-java-release
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: tpsbar-java-release
+          path: dist
+
+      - name: Create release notes
+        shell: bash
+        env:
+          PLUGIN_VERSION: ${{ needs.build.outputs.plugin_version }}
+          PUMPKIN_VERSION: ${{ needs.build.outputs.pumpkin_version }}
+          API_VERSION: ${{ needs.build.outputs.api_version }}
+          WIT_VERSION: ${{ needs.build.outputs.wit_version }}
+        run: |
+          cat > release-notes.md <<EOF
+          ## TPSBar Java ${PLUGIN_VERSION}
+
+          WebAssembly component for Pumpkin.
+
+          - Pumpkin: ${PUMPKIN_VERSION}
+          - Pumpkin API: ${API_VERSION}
+          - WIT: pumpkin:plugin@${WIT_VERSION}
+
+          Install the downloaded file as plugins/tpsbar-java.wasm and restart the server.
+          The release asset name includes the plugin version and the supported Pumpkin, API, and WIT versions.
+          EOF
+
+      - name: Publish GitHub release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PLUGIN_VERSION: ${{ needs.build.outputs.plugin_version }}
+          PUMPKIN_VERSION: ${{ needs.build.outputs.pumpkin_version }}
+          API_VERSION: ${{ needs.build.outputs.api_version }}
+          WIT_VERSION: ${{ needs.build.outputs.wit_version }}
+          ASSET_NAME: ${{ needs.build.outputs.asset_name }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "dist/${ASSET_NAME}" \
+            "dist/${ASSET_NAME}.sha256" \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "TPSBar Java ${PLUGIN_VERSION} (Pumpkin ${PUMPKIN_VERSION}, API ${API_VERSION}, WIT ${WIT_VERSION})" \
+            --notes-file release-notes.md

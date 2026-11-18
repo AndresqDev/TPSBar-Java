@@ -1,0 +1,119 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.pumpkinmc",
+    "module": "pumpkin-api-kt",
+    "version": "0.1.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.4.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "pumpkin-api-kt-metadata-0.1.2.jar",
+          "url": "pumpkin-api-kt-0.1.2.jar",
+          "size": 651,
+          "sha512": "e11ff60e2d94d894e213a4721e42908140f121974d304deb18d43341732f934dad1d133740feb4dd4878d1d163b3ff332d3888b7d471de2e9be6cba470794e32",
+          "sha256": "4d75624658518a7d5b8ada4d47234b69afbc5634aba7a0065d5a2b0eb630ac20",
+          "sha1": "cbcf486e561e2be83c54b0ee503e494c428a4327",
+          "md5": "6802d829d705f71d38bb563b27a7c417"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "pumpkin-api-kt-kotlin-0.1.2-sources.jar",
+          "url": "pumpkin-api-kt-0.1.2-sources.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    },
+    {
+      "name": "wasmWasiApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "wasi"
+      },
+      "available-at": {
+        "url": "../../pumpkin-api-kt-wasm-wasi/0.1.2/pumpkin-api-kt-wasm-wasi-0.1.2.module",
+        "group": "org.pumpkinmc",
+        "module": "pumpkin-api-kt-wasm-wasi",
+        "version": "0.1.2"
+      }
+    },
+    {
+      "name": "wasmWasiRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "wasi"
+      },
+      "available-at": {
+        "url": "../../pumpkin-api-kt-wasm-wasi/0.1.2/pumpkin-api-kt-wasm-wasi-0.1.2.module",
+        "group": "org.pumpkinmc",
+        "module": "pumpkin-api-kt-wasm-wasi",
+        "version": "0.1.2"
+      }
+    },
+    {
+      "name": "wasmWasiSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "wasi"
+      },
+      "available-at": {
+        "url": "../../pumpkin-api-kt-wasm-wasi/0.1.2/pumpkin-api-kt-wasm-wasi-0.1.2.module",
+        "group": "org.pumpkinmc",
+        "module": "pumpkin-api-kt-wasm-wasi",
+        "version": "0.1.2"
+      }
+    }
+  ]
+}

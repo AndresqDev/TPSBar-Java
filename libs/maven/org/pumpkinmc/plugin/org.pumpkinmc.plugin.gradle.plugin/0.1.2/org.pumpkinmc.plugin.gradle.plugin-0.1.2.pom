@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.pumpkinmc.plugin</groupId>
+  <artifactId>org.pumpkinmc.plugin.gradle.plugin</artifactId>
+  <version>0.1.2</version>
+  <packaging>pom</packaging>
+  <name>Pumpkin Kotlin Gradle Plugin</name>
+  <description>Gradle plugin that builds Kotlin/Wasm Pumpkin plugins from the published API source snapshot.</description>
+  <url>https://github.com/Pumpkin-MC/pumpkin-api-kt</url>
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://github.com/Pumpkin-MC/pumpkin-api-kt/blob/master/LICENSE-MIT</url>
+    </license>
+    <license>
+      <name>Apache-2.0</name>
+      <url>https://github.com/Pumpkin-MC/pumpkin-api-kt/blob/master/LICENSE-APACHE</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>Pumpkin-MC</id>
+      <name>Pumpkin Contributors</name>
+      <url>https://github.com/Pumpkin-MC</url>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git://github.com/Pumpkin-MC/pumpkin-api-kt.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Pumpkin-MC/pumpkin-api-kt.git</developerConnection>
+    <url>https://github.com/Pumpkin-MC/pumpkin-api-kt</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>org.pumpkinmc</groupId>
+      <artifactId>pumpkin-api-kt-gradle-plugin</artifactId>
+      <version>0.1.2</version>
+    </dependency>
+  </dependencies>
+</project>

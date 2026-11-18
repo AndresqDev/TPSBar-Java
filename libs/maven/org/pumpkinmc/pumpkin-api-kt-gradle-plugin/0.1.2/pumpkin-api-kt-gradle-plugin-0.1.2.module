@@ -1,0 +1,84 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "org.pumpkinmc",
+    "module": "pumpkin-api-kt-gradle-plugin",
+    "version": "0.1.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.4.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "pumpkin-api-kt-gradle-plugin-0.1.2.jar",
+          "url": "pumpkin-api-kt-gradle-plugin-0.1.2.jar",
+          "size": 47237,
+          "sha512": "921e0a72d1ed4fcc6509cb11d9fe4490f59df4f38058fad4165357a20931e35e9b9c636f3d78220d693b16405396d82c16c46e5e9a69dfbeeabe8b70bda02c09",
+          "sha256": "e347ef8cdd6ea7745d4b7454462350378f36d0cb3c4b8bad6a26d82452a4043c",
+          "sha1": "5d11d58e3bec03c8036d7a8070e6869861486223",
+          "md5": "eac0bdf683368d46e1f2433d1dfce794"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "pumpkin-api-kt-gradle-plugin-0.1.2.jar",
+          "url": "pumpkin-api-kt-gradle-plugin-0.1.2.jar",
+          "size": 47237,
+          "sha512": "921e0a72d1ed4fcc6509cb11d9fe4490f59df4f38058fad4165357a20931e35e9b9c636f3d78220d693b16405396d82c16c46e5e9a69dfbeeabe8b70bda02c09",
+          "sha256": "e347ef8cdd6ea7745d4b7454462350378f36d0cb3c4b8bad6a26d82452a4043c",
+          "sha1": "5d11d58e3bec03c8036d7a8070e6869861486223",
+          "md5": "eac0bdf683368d46e1f2433d1dfce794"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "pumpkin-api-kt-gradle-plugin-0.1.2-sources.jar",
+          "url": "pumpkin-api-kt-gradle-plugin-0.1.2-sources.jar",
+          "size": 4459,
+          "sha512": "dda705af65a24fcc9057c3d0396e51fabe507875945e08433367cc4e7e755934251f27aad580cdd9c00e77932a934deddc8e11ffc117714e1e901f552c7e23eb",
+          "sha256": "1e3225a04d81db3cf8ab9c279287c4ee88626a53bd3aca2bc40a37555a5bed86",
+          "sha1": "85d10d45c6e40ff7d4b44c2e25246ea51de4bf70",
+          "md5": "6d86f49b44417b4495fd59225554ef80"
+        }
+      ]
+    }
+  ]
+}
